@@ -16,13 +16,14 @@ while (my $linha = <$fh>){
 
 close ($arquivo);#Fecha arquivo txt
 
+#####POEMAS#####
 
-my @matches = ($texto =~ /[\w][\n]{3}[\w]/g); #pega todas ocorrencias da expressao regular no texto
-my $countPoemas = () = $texto =~ /[\w][\n]{3}[\w]/g;
-
-
-print @matches; #mostra todas as ocorrencias da expressao regular encontrada no texto
-
-my $string_len = length(@matches);
-
+#my @matchesPoemas = ($texto =~ /(]|[\w])[\n]{3}[\w]/g); #pega todas ocorrencias da expressao regular no texto
+my $countPoemas = () = $texto =~ /(]|[\w])[\n]{3}[\w]/g;
+#print @matchesPoemas; #mostra todas as ocorrencias da expressao regular encontrada no texto
 print "Numero total de poemas: $countPoemas";
+
+################
+
+
+#####VERSOS####
