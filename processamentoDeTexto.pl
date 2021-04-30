@@ -8,13 +8,26 @@ open(my $fh, "<" ,$arquivo) #abrir o arquivo txt no modo leitura '<'
   or die "Nao foi possivel abrir o arquivo!\n";
 
 my $texto="";
+my $tamanhoTotalDoTexto = 0;
+my $linhasEmBranco = 0;
 while (my $linha = <$fh>){
-    $texto="$texto$linha";#quarda todo texto do arquivo em uma variavel 
+    $texto="$texto$linha";#quarda todo texto do arquivo em uma variavel
+    $tamanhoTotalDoTexto++;
+    if ($linha eq "\n"){#se a linha for estiver em branco
+      $linhasEmBranco++;
+
+    } 
+
 }
 
 #print $texto; #mostra o texto do arquivo lido
 
 close ($arquivo);#Fecha arquivo txt
+
+###Informações do arquivo###
+#print "Tamanho total: $tamanhoTotalDoTexto\n";
+#print "Linhas em Branco: $linhasEmBranco\n";
+###########################
 
 #####POEMAS#####
 
@@ -28,7 +41,10 @@ print "Numero total de poemas: $countPoemas\n";
 
 #####VERSOS####
 
-my $countVersos = () = $texto =~ /([a-z\W]\[\d{2}\]|[,?.!a-z:;_»)-])[\n]/g;
+#my $countVersos = () = $texto =~ /([a-z\W]\[\d{2}\]|[,?.!a-z:;_»)-])[\n]/g; #errado
+my $countVersos = $tamanhoTotalDoTexto - $linhasEmBranco - $countPoemas - 1;
+#o -1 no final é a linha do poema Antônio José (21 DE OUTUBRO DE 1739) que está separada do titulo, porém não
+#é um verso!!!
 print "Numero total de versos: $countVersos\n";
 
 ##############
