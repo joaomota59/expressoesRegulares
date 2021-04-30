@@ -48,3 +48,13 @@ my $countVersos = $tamanhoTotalDoTexto - $linhasEmBranco - $countPoemas - 1;
 print "Numero total de versos: $countVersos\n";
 
 ##############
+
+
+
+####ESTROFES###
+
+my $countEstrofes = () = $texto =~ /([a-z.,;:?!»_]\[\d{2}\]|[a-z.,;:?!»_])[\n][\n]/g;
+
+$countEstrofes = $countEstrofes -1 + 1;#retira da busca o titulo: A ARTHUR DE OLIVEIRA, Enfermo e acrescenta a ultima esfrofe que n foi contada
+
+print "Numero total de estrofes: $countEstrofes\n";
