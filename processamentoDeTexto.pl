@@ -19,11 +19,16 @@ close ($arquivo);#Fecha arquivo txt
 #####POEMAS#####
 
 #my @matchesPoemas = ($texto =~ /(]|[\w])[\n]{3}[\w]/g); #pega todas ocorrencias da expressao regular no texto
-my $countPoemas = () = $texto =~ /(]|[\w])[\n]{3}[\w]/g;
+my $countPoemas = () = $texto =~ /(]|[A-zÀ-ú)0-9])[\n]{3}[A-ZÀ-Ú]/g;
 #print @matchesPoemas; #mostra todas as ocorrencias da expressao regular encontrada no texto
-print "Numero total de poemas: $countPoemas";
+print "Numero total de poemas: $countPoemas\n";
 
 ################
 
 
 #####VERSOS####
+
+my $countVersos = () = $texto =~ /([a-z\W]\[\d{2}\]|[,?.!a-z:;_»)-])[\n]/g;
+print "Numero total de versos: $countVersos\n";
+
+##############
