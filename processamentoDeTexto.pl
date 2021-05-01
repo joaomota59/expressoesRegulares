@@ -64,8 +64,17 @@ print "Numero total de estrofes: $countEstrofes\n";
 
 ###ESTROFE-SEXTILHA###
 
-my $countEstrofesSextilha = () = $texto =~ /(?=(\n\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n\n))/g;#uso do lookaround para pegar elementos com interseção de matches 
+my $countEstrofesSextilha = () = $texto =~ /(?=(\n\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n\n))/g;#uso do lookaround ?= para pegar elementos com interseção de matches 
 
 print "Numero de estrofes sextilha: $countEstrofesSextilha\n";
 
 ######################
+
+
+######SONETOS########
+
+my $countSonetos = () = $texto =~ /\n\n\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n\n[^\n]+\n[^\n]+\n[^\n]+\n\n[^\n]+\n[^\n]+\n[^\n]+\n\n\n/g;
+
+print "Numero de sonetos: $countSonetos\n";
+
+####################
