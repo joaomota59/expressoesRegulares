@@ -58,3 +58,14 @@ my $countEstrofes = () = $texto =~ /([a-z.,;:?!»_]\[\d{2}\]|[a-z.,;:?!»_])[\n]
 $countEstrofes = $countEstrofes -1 + 1;#retira da busca o titulo: A ARTHUR DE OLIVEIRA, Enfermo e acrescenta a ultima esfrofe que n foi contada
 
 print "Numero total de estrofes: $countEstrofes\n";
+
+###############
+
+
+###ESTROFE-SEXTILHA###
+
+my $countEstrofesSextilha = () = $texto =~ /(?=(\n\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n\n))/g;#uso do lookaround para pegar elementos com interseção de matches 
+
+print "Numero de estrofes sextilha: $countEstrofesSextilha\n";
+
+######################
