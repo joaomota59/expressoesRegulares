@@ -10,12 +10,17 @@ open(my $fh, "<" ,$arquivo) #abrir o arquivo txt no modo leitura '<'
 my $texto="";
 my $tamanhoTotalDoTexto = 0;
 my $linhasEmBranco = 0;
+my $somaVersos = 0;
 while (my $linha = <$fh>){
     $texto="$texto$linha";#quarda todo texto do arquivo em uma variavel
     $tamanhoTotalDoTexto++;
     if ($linha eq "\n"){#se a linha for estiver em branco
       $linhasEmBranco++;
-
+    }
+    elsif (!($linha eq (uc $linha) || $linha eq "A ARTHUR DE OLIVEIRA, Enfermo\n")){ #se for diferente de algum titulo, entao é verso
+      my $tamanhoVerso = length($linha);#tamanho do verso
+      print "$tamanhoVerso\n";
+      $somaVersos += $tamanhoVerso;
     } 
 
 }
@@ -78,3 +83,12 @@ my $countSonetos = () = $texto =~ /\n\n\n[^\n]+\n[^\n]+\n[^\n]+\n[^\n]+\n\n[^\n]
 print "Numero de sonetos: $countSonetos\n";
 
 ####################
+
+
+#####TamanhoMédioDosVersos###
+
+my $tamMedioDeVersos = $somaVersos/$countVersos;
+
+print "Tamanho medio dos versos: $tamMedioDeVersos";
+
+###########################
