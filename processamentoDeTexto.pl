@@ -19,8 +19,7 @@ while (my $linha = <$fh>){
     }
     elsif (!($linha eq (uc $linha) || $linha eq "A ARTHUR DE OLIVEIRA, Enfermo\n")){ #se for diferente de algum titulo, entao é verso
       my $tamanhoVerso = length($linha);#tamanho do verso
-      print "$tamanhoVerso\n";
-      $somaVersos += $tamanhoVerso;
+      $somaVersos += $tamanhoVerso - 1;# -1 pq nao conta com o \n de cada verso
     } 
 
 }
@@ -92,3 +91,6 @@ my $tamMedioDeVersos = $somaVersos/$countVersos;
 print "Tamanho medio dos versos: $tamMedioDeVersos";
 
 ###########################
+
+
+####TamanhoMédioDasEstrofes
