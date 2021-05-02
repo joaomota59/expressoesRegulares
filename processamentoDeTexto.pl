@@ -108,9 +108,6 @@ print "Tamanho medio dos versos: $tamMedioDeVersos\n";
 
 #print @vetorTexto;
 
-my @splEstrofesPorPoema = split('\n\n\n\n\n\n', $estrofes);#coloca cada estrofe em uma posição do vetor // será usado no tam medio dos poemas!!!
-
-
 $estrofes =~ s/\n\n\n\n\n\n/\n/g;#replace onde tem 6 \n seguidos troca p apenas um \n
 #agora o espaçamento entre cada estrofe se diferencia apenas por \n\n
 
