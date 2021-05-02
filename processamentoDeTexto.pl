@@ -97,10 +97,10 @@ my $tamMedioDeVersos = $somaVersos/$countVersos;
 
 print "Tamanho medio dos versos: $tamMedioDeVersos\n";
 
-###########################
+#############################
 
 
-####TamanhoMédioDasEstrofes###
+###TamanhoMédioDasEstrofes###
 
 
 #my @matchesEstrofes = ($texto =~ /(\n\n((([^\n]+\n)+\n)+\n\n\n))/g);
@@ -108,24 +108,37 @@ print "Tamanho medio dos versos: $tamMedioDeVersos\n";
 
 #print @vetorTexto;
 
+my @splEstrofesPorPoema = split('\n\n\n\n\n\n', $estrofes);#coloca cada estrofe em uma posição do vetor // será usado no tam medio dos poemas!!!
+
 
 $estrofes =~ s/\n\n\n\n\n\n/\n/g;#replace onde tem 6 \n seguidos troca p apenas um \n
-#agora o espaçamento entre cada estrofe se diferencia apenas por um \n
+#agora o espaçamento entre cada estrofe se diferencia apenas por \n\n
 
 
-my @spl = split('\n\n', $estrofes);
+my @spl = split('\n\n', $estrofes);#coloca cada estrofe em uma posição do vetor
 
 
-my $somatorioDeEstrofes = 0; #Guarda a quantidade total do tamanho de cada estrofe
-foreach my $i (@spl) 
+my $somatorioDeEstrofes = -1; #Guarda a quantidade total do tamanho de cada estrofe, -1 pq na primeira linha do vetor tem um \n que não é uma estrofe
+foreach my $i (@spl)#percorre o vetor de estrofes 
 {
 
     my $c = () = $i =~ /(?=(\n))/g;#quantidade de versos em cada estrofe, conta toda vez que ocorre quebra de linha
     $c++;#soma mais 1 pq o ultimo verso da estrofe n tem\n devio ao split q foi feito antes
     $somatorioDeEstrofes+=$c;
-    #print "$c\n";
+    #print "$c\n";#printa o tamanho de cada estrofe no arquivo
 }
 
 my $tamMedioDeEstrofes = $somatorioDeEstrofes/$countEstrofes;
-print "Tamanho medio das estrofes: $tamMedioDeEstrofes";
+print "Tamanho medio das estrofes: $tamMedioDeEstrofes\n";
 #############################
+
+
+
+
+######TamanhoMédioDosPoemas######
+
+my $tamMedioDasPoesias = $countVersos/$countPoemas;
+
+print "Tamanho medio das poesias: $tamMedioDasPoesias";
+
+################################
