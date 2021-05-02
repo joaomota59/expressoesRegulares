@@ -8,9 +8,10 @@ open(my $fh, "<" ,$arquivo) #abrir o arquivo txt no modo leitura '<'
   or die "Nao foi possivel abrir o arquivo!\n";
 
 my $texto="";
-my $tamanhoTotalDoTexto = 0;
-my $linhasEmBranco = 0;
-my $somaVersos = 0;
+my $tamanhoTotalDoTexto = 0;#tamanho total do Texto com titulo, linhas em braco e versos
+my $linhasEmBranco = 0;#numero de linhas me branco no texto
+my $somaVersos = 0;#guarda a soma de todos os tamanhos dos versos
+my $estrofes="";#guarda somente as estrofes
 while (my $linha = <$fh>){
     $texto="$texto$linha";#quarda todo texto do arquivo em uma variavel
     $tamanhoTotalDoTexto++;
@@ -22,7 +23,13 @@ while (my $linha = <$fh>){
       $somaVersos += $tamanhoVerso - 1;# -1 pq nao conta com o \n de cada verso
     } 
 
+    if ($linha eq "\n" || !($linha eq (uc $linha) || $linha eq "A ARTHUR DE OLIVEIRA, Enfermo\n")){#pode ser verso ou linha em branco
+      $estrofes = "$estrofes$linha";
+    }
+
 }
+
+
 
 #print $texto; #mostra o texto do arquivo lido
 
@@ -88,9 +95,37 @@ print "Numero de sonetos: $countSonetos\n";
 
 my $tamMedioDeVersos = $somaVersos/$countVersos;
 
-print "Tamanho medio dos versos: $tamMedioDeVersos";
+print "Tamanho medio dos versos: $tamMedioDeVersos\n";
 
 ###########################
 
 
-####TamanhoMédioDasEstrofes
+####TamanhoMédioDasEstrofes###
+
+
+#my @matchesEstrofes = ($texto =~ /(\n\n((([^\n]+\n)+\n)+\n\n\n))/g);
+
+
+#print @vetorTexto;
+
+
+$estrofes =~ s/\n\n\n\n\n\n/\n/g;#replace onde tem 6 \n seguidos troca p apenas um \n
+#agora o espaçamento entre cada estrofe se diferencia apenas por um \n
+
+
+my @spl = split('\n\n', $estrofes);
+
+
+my $somatorioDeEstrofes = 0; #Guarda a quantidade total do tamanho de cada estrofe
+foreach my $i (@spl) 
+{
+
+    my $c = () = $i =~ /(?=(\n))/g;#quantidade de versos em cada estrofe, conta toda vez que ocorre quebra de linha
+    $c++;#soma mais 1 pq o ultimo verso da estrofe n tem\n devio ao split q foi feito antes
+    $somatorioDeEstrofes+=$c;
+    #print "$c\n";
+}
+
+my $tamMedioDeEstrofes = $somatorioDeEstrofes/$countEstrofes;
+print "Tamanho medio das estrofes: $tamMedioDeEstrofes";
+#############################
